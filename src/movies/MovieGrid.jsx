@@ -35,7 +35,7 @@ class MovieGrid extends Component {
 
     showError() {
         return (
-            <div>Error...</div>
+            <div className="container-fluid">Error...</div>
         );
     }
 }

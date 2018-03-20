@@ -1,41 +1,55 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import * as movieActions from './movieTypeActions';
 import {bindActionCreators} from 'redux';
-import { NOW_SHOWING, COMING_SOON } from './movieTypeActions'
+import {NOW_SHOWING, COMING_SOON} from './movieTypeActions'
 import fetchMovies from "../movies/actions";
+import './MovieType.css';
 
-class MovieType extends Component{
-    constructor(props){
-        super(props);   
+class MovieType extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nowShowingClicked: true,
+            comingSoonClicked: false
+        };
         this.onMovieTypeChange = this.onMovieTypeChange.bind(this);
         this.props.fetchMovies(this.props.movieFilter);
     }
 
-    onMovieTypeChange(event){
+    onMovieTypeChange(event) {
+        this.changeMovieSelection(event.target.id);
         this.props.actions.changeMovieType(event.target.id);
         this.props.movieFilter.movieType = event.target.id;
         this.props.fetchMovies(this.props.movieFilter);
     }
-    
-    render(){
-        return(
-            <div className="btn-group" data-toggle="buttons">
-                <label className="btn btn-primary">
-                    <input type="radio" name="movieTypes" id={NOW_SHOWING}
-                        onChange={this.onMovieTypeChange} className="btn active"
-                        /> 
-                    NOW RUNNING
-                </label>
-                <label className="btn btn-primary">
-                    <input type="radio" name="movieTypes" id={COMING_SOON}
-                        onChange={this.onMovieTypeChange}
-                        value="false"
-                        /> 
-                    COMING SOON
-                </label>
+
+    changeMovieSelection(selectionType) {
+        if (selectionType === NOW_SHOWING) {
+            this.setState({nowShowingClicked: true, comingSoonClicked: false});
+        } else if (selectionType === COMING_SOON) {
+            this.setState({nowShowingClicked: false, comingSoonClicked: true});
+        }
+    }
+
+    render() {
+        var nowShowingClass = this.state.nowShowingClicked ? 'click-state' : 'base-state';
+        var comingSoonClass = this.state.comingSoonClicked ? 'click-state' : 'base-state';
+        console.log(nowShowingClass);
+        return (
+            <div className="container-fluid button-group">
+                <div className="btn-group" data-toggle="buttons">
+                    <button type="button" name="movieTypes" id={NOW_SHOWING}
+                               onClick={this.onMovieTypeChange} className={nowShowingClass}>
+                        NOW RUNNING
+                    </button>
+                    <button type="button" name="movieTypes" id={COMING_SOON}
+                            onClick={this.onMovieTypeChange} className={comingSoonClass}>
+                        COMING SOON
+                    </button>
+                </div>
             </div>
-        
+
         );
     }
 }
