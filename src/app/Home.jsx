@@ -5,7 +5,6 @@ import MovieType from '../movieType/MovieType';
 const Home = () => (
   <div>
     <MovieType/>
-      <br/>
     <MovieGrid />
   </div>  
 );

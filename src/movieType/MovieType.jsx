@@ -19,7 +19,6 @@ class MovieType extends Component {
 
     onMovieTypeChange(event) {
         this.changeMovieSelection(event.target.id);
-        this.props.actions.changeMovieType(event.target.id);
         this.props.movieFilter.movieType = event.target.id;
         this.props.fetchMovies(this.props.movieFilter);
     }
@@ -35,7 +34,6 @@ class MovieType extends Component {
     render() {
         var nowShowingClass = this.state.nowShowingClicked ? 'click-state' : 'base-state';
         var comingSoonClass = this.state.comingSoonClicked ? 'click-state' : 'base-state';
-        console.log(nowShowingClass);
         return (
             <div className="container-fluid button-group">
                 <div className="btn-group" data-toggle="buttons">
@@ -62,7 +60,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(movieActions, dispatch),
         fetchMovies: bindActionCreators(fetchMovies, dispatch)
     }
 }

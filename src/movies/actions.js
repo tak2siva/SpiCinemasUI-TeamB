@@ -29,6 +29,7 @@ const fetchMovies = (movieFilter) => {
       const movies = await axios.get(createMovieURL(movieFilter));
       const moviesData = movies.data.map(movie => {
         const sluggedData = slug(changeCase.sentenceCase(movie.name), { lower: true });
+        movie.name = movie.name.toUpperCase();
         return {...movie, slug: sluggedData}
       });  
       dispatch(movieDataFetched(moviesData))
