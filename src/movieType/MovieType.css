@@ -1,0 +1,23 @@
+.click-state{
+    background-color: #E82619;
+    color: white;
+    padding: 8px 7px;
+    font-size: 15px;
+    cursor: pointer;
+    float: left;
+    font-weight: 300;
+}
+
+.base-state{
+    background-color: white;
+    color: black;
+    padding: 8px 7px;
+    font-size: 15px;
+    cursor: pointer;
+    float: left;
+    font-weight: 300;
+}
+
+.button-group{
+    padding-left: 2%;
+}
