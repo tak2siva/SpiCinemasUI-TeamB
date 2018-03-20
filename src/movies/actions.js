@@ -12,23 +12,18 @@ const fetchMoviesInProgress = {
 
 const movieDataFetched = (data) => ({
   type: FETCH_MOVIES_SUCCESS, 
-  payload: data,
+  payload: data
 });
 
 const movieDataFetchFailure = {
   type: FETCH_MOVIES_FAILURE,
 };
 
-const fetchMovies = () => {
+const fetchMovies = (movieFilter) => {
   return async (dispatch) => {
     dispatch(fetchMoviesInProgress);
     try {
-      const movies = await axios.get('http://localhost:9090/movies/now-showing')
-      // const movies = [{
-      //   id: 'asfasdfas',
-      //   name: 'Kabali',
-      //   experience: 'asfasdfag',
-      // }]
+      const movies = await axios.get(createMovieURL(movieFilter));
       const moviesData = movies.data.map(movie => {
         const sluggedData = slug(changeCase.sentenceCase(movie.name), { lower: true });
         return {...movie, slug: sluggedData}
@@ -39,5 +34,17 @@ const fetchMovies = () => {
     }
   }
 };
+
+function createMovieURL(movieFilter) {
+  let url = 'http://localhost:9090/movies/';
+  if(movieFilter.movieType === 'NOW_SHOWING'){
+    url = url + 'now-showing';
+  } else {
+    url = url + 'now_showing?movieType=COMING_SOON';
+  }
+  console.log(url);
+  return url;
+}
+
 
 export default fetchMovies;
