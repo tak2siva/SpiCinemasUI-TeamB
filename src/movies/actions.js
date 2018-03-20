@@ -1,7 +1,8 @@
 import axios from 'axios';
 import changeCase from 'change-case';
 import slug from 'slug';
-
+import {changeMovieType} from '../movieType/movieTypeActions'
+import {changeMovieLanguages} from '../app/filter/actions'
 export const FETCH_MOVIES_PROGRESS = 'FETCH_MOVIES_PROGRESS';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 export const FETCH_MOVIES_FAILURE = 'FETCH_MOVIES_FAILURE';
@@ -22,6 +23,8 @@ const movieDataFetchFailure = {
 const fetchMovies = (movieFilter) => {
   return async (dispatch) => {
     dispatch(fetchMoviesInProgress);
+    dispatch(changeMovieType(movieFilter.movieType))
+    dispatch(changeMovieLanguages(movieFilter.languages))
     try {
       const movies = await axios.get(createMovieURL(movieFilter));
       const moviesData = movies.data.map(movie => {
@@ -37,12 +40,18 @@ const fetchMovies = (movieFilter) => {
 
 function createMovieURL(movieFilter) {
   let url = 'http://localhost:9090/movies/';
-  if(movieFilter.movieType === 'NOW_SHOWING'){
-    url = url + 'now-showing';
-  } else {
-    url = url + 'now_showing?movieType=COMING_SOON';
+  let movieType = '';
+  
+  if (movieFilter != null) {
+    if(movieFilter.movieType === 'NOW_SHOWING'){
+      movieType = 'movieType=NOW_SHOWING';
+    } else {
+      movieType = 'movieType=COMING_SOON';
+    }
+    let languages = movieFilter.languages ? 'languages=' + movieFilter.languages || '' : '';
+
+    url = url + '?' + movieType + '&' + languages; 
   }
-  console.log(url);
   return url;
 }
 

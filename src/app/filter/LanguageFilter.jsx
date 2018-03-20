@@ -4,14 +4,12 @@ import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import fetchMovies from './actions';
+import fetchMovies from '../../movies/actions';
 const LANGUAGES = [
 	{ label: 'English', value: 'English' },
 	{ label: 'Hindi', value: 'Hindi' },
 	{ label: 'Tamil', value: 'Tamil' },
 ];
-
-
 
 var LanguageFilter = createClass({
 	
