@@ -42,7 +42,7 @@ function createMovieURL(movieFilter) {
   } else {
     url = url + 'now_showing?movieType=COMING_SOON';
   }
-  console.log("url " + url);
+  console.log(url);
   return url;
 }
 
