@@ -38,20 +38,26 @@ var LanguageFilter = createClass({
 		const { disabled, stayOpen, value } = this.state;
 		const options = LANGUAGES;
 		return (
-			<div className="section" style={{maxWidth: 200}}>
-				<Select
-					closeOnSelect={!stayOpen}
-					disabled={disabled}
-					multi
-					onChange={this.handleSelectChange}
-					options={options}
-					placeholder="Select your language(s)"
-          removeSelected={this.state.removeSelected}
-					rtl={this.state.rtl}
-					simpleValue
-					value={value}
-					onClose={() => this.handleOnClose(value)}
-				/>
+			<div style={{maxWidth: 300, marginLeft:'auto', marginRight:50}}>
+				<div className="section" style={{maxWidth: 200, marginLeft:'auto'}}>
+					<Select
+						closeOnSelect={!stayOpen}
+						disabled={disabled}
+						multi
+						onChange={this.handleSelectChange}
+						options={options}
+						placeholder="Select your language(s)"
+						removeSelected={this.state.removeSelected}
+						rtl={this.state.rtl}
+						simpleValue
+						value={value}
+					/>
+				</div>
+				<span>
+					<button style={{display: 'inline-block', float: 'right'}} onClick={() => this.handleOnClose(value)}>
+					Search 
+					</button>
+				</span>
 			</div>
 		);
 	}
