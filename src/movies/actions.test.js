@@ -25,6 +25,7 @@ describe("test fetch action", () => {
         
         mock.onGet('http://localhost:9090/movies/?movieType=NOW_SHOWING&languages=English,Hindi').reply(200, mockResponse);
         const expectedResponse = mockResponse.map(element => {
+            element.name = element.name.toUpperCase();
             return {...element, slug: 'kabali'}
         });
 

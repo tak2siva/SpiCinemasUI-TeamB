@@ -16,11 +16,10 @@ class MovieGrid extends Component {
 
     showMovies() {
         return (
-
             <div className="container-fluid">
                 <div>
-                    {this.props.movies.items.map(({name, slug}) => (
-                        <MovieItem key={name} name={name} slug={slug}/>
+                    {this.props.movies.items.map(({name, slug, experiences}) => (
+                        <MovieItem key={name} name={name} slug={slug} experiences={experiences}/>
                     ))}
                 </div>
             </div>
