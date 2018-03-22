@@ -5,11 +5,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import fetchMovies from '../../movies/actions';
-const LANGUAGES = [
-	{ label: 'English', value: 'English' },
-	{ label: 'Hindi', value: 'Hindi' },
-	{ label: 'Tamil', value: 'Tamil' },
-];
+import { fetchLanguages } from './actions';
 
 var LanguageFilter = createClass({
 	
@@ -23,20 +19,22 @@ var LanguageFilter = createClass({
 		};
 	},
 	handleSelectChange (value) {
-		console.log('You\'ve selected:', value);
 		this.setState({ value });
 	},
 
 	handleOnClose(value){
-		console.log(typeof value, value);
-		this.props.movieFilter.languages=value;
-		console.log(this.props.movieFilter.languages);
+		this.props.movieFilter.selectedLanguages=value;
 		this.props.fetchMovies(this.props.movieFilter);
+	},
+
+	componentWillMount(){
+		this.props.fetchLanguages();
+ 
 	},
 
 	render () {
 		const { disabled, stayOpen, value } = this.state;
-		const options = LANGUAGES;
+		const options = this.props.languages;
 		return (
 			<div style={{maxWidth: 300, marginLeft:'auto', marginRight:50}}>
 				<div className="section" style={{maxWidth: 200, marginLeft:'auto'}}>
@@ -65,12 +63,13 @@ var LanguageFilter = createClass({
 
 export default connect(
 	(state) => {
-		console.log(state);
 		return {
-			movieFilter: state.movieFilter
+			movieFilter: state.movieFilter,
+			languages: state.languages
 		}
 	},
 	(dispatch) => ({
-    fetchMovies: (movieFilter) => dispatch(fetchMovies(movieFilter))
+		fetchMovies: (movieFilter) => dispatch(fetchMovies(movieFilter)),
+		fetchLanguages: () => dispatch(fetchLanguages())
   })
 )(LanguageFilter);

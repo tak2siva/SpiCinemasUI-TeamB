@@ -29,13 +29,13 @@ describe("test fetch action", () => {
             return {...element, slug: 'kabali'}
         });
 
-        store.dispatch(fetchMovies({movieType: 'NOW_SHOWING', languages: 'English,Hindi'}))
+        store.dispatch(fetchMovies({movieType: 'NOW_SHOWING', selectedLanguages: 'English,Hindi'}))
             .then(() => {
                 const expectedActions = store.getActions();
                 expect(expectedActions.length).toBe(4);
                 expect(expectedActions).toContainEqual({"type": "FETCH_MOVIES_PROGRESS"});
                  expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_TYPE", movieType: "NOW_SHOWING"});
-                 expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_LANGUAGE", languages: 'English,Hindi'});
+                 expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_LANGUAGE", languageFilter: 'English,Hindi'});
                 expect(expectedActions).toContainEqual({"type": "FETCH_MOVIES_SUCCESS", payload: expectedResponse});
             });
     });
@@ -43,13 +43,13 @@ describe("test fetch action", () => {
     it("when server responds with Error", async () => {
         mock.onGet('http://localhost:9090/movies/?movieType=NOW_SHOWING&languages=English,Hindi').reply(404);
 
-        store.dispatch(fetchMovies({movieType: 'NOW_SHOWING', languages: 'English,Hindi'}))
+        store.dispatch(fetchMovies({movieType: 'NOW_SHOWING', selectedLanguages: 'English,Hindi'}))
             .then(() => {
                 const expectedActions = store.getActions();
                 expect(expectedActions.length).toBe(4);
                 expect(expectedActions).toContainEqual({"type": "FETCH_MOVIES_PROGRESS"});
                 expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_TYPE", movieType: "NOW_SHOWING"});
-                expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_LANGUAGE", languages:'English,Hindi'});
+                expect(expectedActions).toContainEqual({"type": "CHANGE_MOVIE_LANGUAGE", languageFilter:'English,Hindi'});
                 expect(expectedActions).toContainEqual({"type": "FETCH_MOVIES_FAILURE"});
             });
     });

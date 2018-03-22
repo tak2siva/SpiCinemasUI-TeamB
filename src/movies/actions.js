@@ -24,7 +24,7 @@ const fetchMovies = (movieFilter) => {
   return async (dispatch) => {
     dispatch(fetchMoviesInProgress);
     dispatch(changeMovieType(movieFilter.movieType))
-    dispatch(changeMovieLanguages(movieFilter.languages))
+    dispatch(changeMovieLanguages(movieFilter.selectedLanguages))
     try {
       const movies = await axios.get(createMovieURL(movieFilter));
       const moviesData = movies.data.map(movie => {
@@ -49,9 +49,9 @@ function createMovieURL(movieFilter) {
     } else {
       movieType = 'movieType=COMING_SOON';
     }
-    let languages = movieFilter.languages ? 'languages=' + movieFilter.languages || '' : '';
+    let selectedLanguages = movieFilter.selectedLanguages ? 'languages=' + movieFilter.selectedLanguages || '' : '';
 
-    url = url + '?' + movieType + '&' + languages; 
+    url = url + '?' + movieType + '&' + selectedLanguages; 
   }
   return url;
 }
