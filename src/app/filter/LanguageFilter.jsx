@@ -37,7 +37,7 @@ var LanguageFilter = createClass({
 		const options = this.props.languages;
 		return (
 			<div style={{maxWidth: 300, marginLeft:'auto', marginRight:50}}>
-				<div className="section" style={{maxWidth: 200, marginLeft:'auto'}}>
+				<div className="section" style={{maxWidth: 200, marginLeft:'13%'}}>
 					<Select
 						closeOnSelect={!stayOpen}
 						disabled={disabled}
@@ -51,11 +51,11 @@ var LanguageFilter = createClass({
 						value={value}
 					/>
 				</div>
-				<span>
-					<button style={{display: 'inline-block', float: 'right'}} onClick={() => this.handleOnClose(value)}>
-					Search 
-					</button>
-				</span>
+				<button style={{display: 'inline-block', float: 'right', marginTop: '-12%', padding: '6px 7px'}} 
+					className="btn btn-default"
+					onClick={() => this.handleOnClose(value)}>
+				Search 
+				</button>
 			</div>
 		);
 	}
