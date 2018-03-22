@@ -1,4 +1,4 @@
-import { FETCH_MOVIES_PROGRESS, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from '../movies/actions'
+import { FETCH_MOVIES_PROGRESS, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from './actions'
 
 const moviesReducer = (state = { fetching: false, items: []}, action) => {
   switch(action.type) {

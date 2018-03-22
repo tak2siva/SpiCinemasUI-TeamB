@@ -1,6 +1,6 @@
 import React from 'react';
-import MovieGrid from '../movies/MovieGrid';
-import MovieType from '../movieType/MovieType';
+import MovieGrid from './movies/MovieGrid';
+import MovieType from './filter/movieType/MovieTypeFilter';
 
 const Home = () => (
   <div>

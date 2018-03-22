@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as movieActions from './movieTypeActions';
+import * as movieActions from './actions';
 import {bindActionCreators} from 'redux';
-import {NOW_SHOWING, COMING_SOON} from './movieTypeActions'
-import fetchMovies from "../movies/actions";
-import './MovieType.css';
+import {NOW_SHOWING, COMING_SOON} from './actions'
+import fetchMovies from "../../movies/actions";
+import './MovieTypeFilter.css';
 
 class MovieType extends Component {
     constructor(props) {

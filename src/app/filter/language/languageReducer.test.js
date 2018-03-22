@@ -1,5 +1,5 @@
 import languageReducer from './languageReducer';
-import { FETCH_LANGUAGES } from '../app/filter/actions';
+import { FETCH_LANGUAGES } from './actions';
 
 it('should return empty languages when action is not FETCH_LANGUAGES', () => {
    const action = {type: "UNKNOWN_ACTION"} 

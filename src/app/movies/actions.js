@@ -1,8 +1,8 @@
 import axios from 'axios';
 import changeCase from 'change-case';
 import slug from 'slug';
-import {changeMovieType} from '../movieType/movieTypeActions'
-import {changeMovieLanguages} from '../app/filter/actions'
+import {changeMovieType} from '../filter/movieType/actions'
+import {changeMovieLanguages} from '../filter/language/actions'
 export const FETCH_MOVIES_PROGRESS = 'FETCH_MOVIES_PROGRESS';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 export const FETCH_MOVIES_FAILURE = 'FETCH_MOVIES_FAILURE';

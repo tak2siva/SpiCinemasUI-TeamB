@@ -8,8 +8,7 @@ const MovieItem = ({name, slug, experiences}) => {
         <div className="col-md-2">
             <br/>
             <div align="center" >
-                <img alt={name} src={imageUrl} 
-                onError={(e) => {e.target.src=defaultImage}}/>
+                <img alt={name} src={imageUrl} onError={(e) => {e.target.src=defaultImage}}/>
                 <h5>{name}</h5>
                 <h6>{experiences}</h6>
             </div>

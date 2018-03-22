@@ -3,9 +3,8 @@
  */
 
 import thunk from 'redux-thunk';
-import applyMiddleware from 'redux';
 import MockAdapter from 'axios-mock-adapter';
-import fetchMovies from "../movies/actions";
+import fetchMovies from "./actions";
 import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
 

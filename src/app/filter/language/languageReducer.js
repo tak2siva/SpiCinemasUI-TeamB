@@ -1,4 +1,4 @@
-import {FETCH_LANGUAGES} from '../app/filter/actions'
+import {FETCH_LANGUAGES} from './actions'
 export default function languageReducer(state = [], action) {
     switch(action.type) {
         case FETCH_LANGUAGES:

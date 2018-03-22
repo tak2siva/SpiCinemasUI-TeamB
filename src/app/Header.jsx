@@ -1,5 +1,5 @@
 import React from 'react';
-import LanguageFilter from './filter/LanguageFilter';
+import LanguageFilter from './filter/language/LanguageFilter';
 const Header = () => (
   <div >
     <h1>Just Cinemas</h1>

@@ -1,5 +1,5 @@
-import { NOW_SHOWING, CHANGE_MOVIE_TYPE } from '../movieType/movieTypeActions';
-import {CHANGE_MOVIE_LANGUAGE} from '../app/filter/actions'
+import { NOW_SHOWING, CHANGE_MOVIE_TYPE } from './movieType/actions';
+import {CHANGE_MOVIE_LANGUAGE} from './language/actions'
 export default function movieFilterReducer(state = {movieType: NOW_SHOWING, selectedLanguages:''}, action) {
     switch(action.type) {
         case CHANGE_MOVIE_TYPE:

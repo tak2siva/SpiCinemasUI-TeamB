@@ -1,6 +1,6 @@
 import movieFilterReducer from './movieFilterReducer';
-import { COMING_SOON, CHANGE_MOVIE_TYPE } from '../movieType/movieTypeActions';
-import { CHANGE_MOVIE_LANGUAGE } from '../app/filter/actions';
+import { COMING_SOON, CHANGE_MOVIE_TYPE } from './movieType/actions';
+import { CHANGE_MOVIE_LANGUAGE } from './language/actions';
 
 it('should return the same state if the action-type is unknown', () => {
    const state = {movieType: 'NOW_SHOWING', selectedLanguages: 'English'};
